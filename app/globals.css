@@ -1,0 +1,306 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Prevent flash of unstyled content */
+html {
+  background-color: #0d0d0d;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Prevent overflow on all main container elements */
+.container {
+  overflow-x: hidden;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+    
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 98%;
+    
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 98%;
+    
+    --primary: 265 89% 64%; /* Adjusted to purple color */
+    --primary-foreground: 0 0% 98%;
+    
+    --secondary: 0 0% 11%;
+    --secondary-foreground: 0 0% 98%;
+    
+    --muted: 0 0% 13%;
+    --muted-foreground: 0 0% 63.9%;
+    
+    --accent: 0 0% 11%;
+    --accent-foreground: 0 0% 98%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 265 89% 64%; /* Adjusted to match primary */
+    
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 262.1 83.3% 57.8%;
+  }
+  
+  /* Theme color modes */
+  .theme-purple {
+    --primary: 291.1 93.3% 67.8%;
+    --ring: 291.1 93.3% 67.8%;
+    --border: 270 50% 20%;
+    --accent: 270 50% 25%;
+  }
+  
+  .theme-blue {
+    --primary: 217.2 91.2% 59.8%;
+    --ring: 217.2 91.2% 59.8%;
+    --border: 217.2 50% 20%;
+    --accent: 217.2 50% 25%;
+  }
+  
+  .theme-green {
+    --primary: 160 84% 39%;
+    --ring: 160 84% 39%;
+    --border: 160 50% 20%;
+    --accent: 160 50% 25%;
+  }
+  
+  .theme-amber {
+    --primary: 38 92% 50%;
+    --ring: 38 92% 50%;
+    --border: 38 50% 20%;
+    --accent: 38 50% 25%;
+  }
+  
+  /* Animated gradients for each theme */
+  .theme-purple .animated-gradient {
+    background: linear-gradient(-45deg, hsl(271, 91%, 65%, 0.2), hsl(315, 95%, 65%, 0.2), hsl(271, 91%, 65%, 0.2));
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+  
+  .theme-blue .animated-gradient {
+    background: linear-gradient(-45deg, hsl(217, 91%, 60%, 0.2), hsl(190, 90%, 60%, 0.2), hsl(217, 91%, 60%, 0.2));
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+  
+  .theme-green .animated-gradient {
+    background: linear-gradient(-45deg, hsl(160, 84%, 39%, 0.2), hsl(145, 83%, 39%, 0.2), hsl(160, 84%, 39%, 0.2));
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+  
+  .theme-amber .animated-gradient {
+    background: linear-gradient(-45deg, hsl(38, 92%, 50%, 0.2), hsl(25, 95%, 50%, 0.2), hsl(38, 92%, 50%, 0.2));
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+  
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    scroll-behavior: auto !important;
+  }
+  html {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.7);
+}
+
+/* Theme Mode Effects */
+.theme-purple ::-webkit-scrollbar-thumb {
+  background: rgba(217, 70, 239, 0.5);
+}
+.theme-purple ::-webkit-scrollbar-thumb:hover {
+  background: rgba(217, 70, 239, 0.7);
+}
+
+.theme-blue ::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.5);
+}
+.theme-blue ::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.7);
+}
+
+.theme-green ::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.5);
+}
+.theme-green ::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.7);
+}
+
+.theme-amber ::-webkit-scrollbar-thumb {
+  background: rgba(245, 158, 11, 0.5);
+}
+.theme-amber ::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 158, 11, 0.7);
+}
+
+/* Full Window Player */
+.full-window-player {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 9999 !important;
+  background-color: hsl(var(--background)) !important;
+  padding: 1rem !important;
+  margin: 0 !important;
+  overflow: auto !important;
+}
+
+/* Ensure the player has proper sizing */
+.full-window-player .player-content {
+  max-width: 100% !important;
+  max-height: calc(100vh - 2rem) !important;
+  margin: 0 auto !important;
+}
+
+/* Make album art larger in full window mode */
+.full-window-player .album-art-container {
+  width: 400px !important;
+  height: 400px !important;
+  margin: 0 auto !important;
+}
+
+/* Better visualizer in full window mode */
+.full-window-player .visualizer-container {
+  height: 200px !important;
+  width: 100% !important;
+  max-width: 800px !important;
+}
+
+/* Enhanced Music Player Styles */
+.main-player-container {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.main-player-container.full-window-player {
+  height: 100vh !important;
+  border-radius: 0 !important;
+  z-index: 99 !important;
+}
+
+.player-content {
+  transition: max-width 0.3s ease-in-out;
+}
+
+/* Audio Visualizer Enhancement */
+.visualizer-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.visualizer-container::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.visualizer-container canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Album art animation in expanded view */
+.album-art-container {
+  position: relative;
+}
+
+.album-art-container::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(138, 43, 226, 0.5) 0%, rgba(138, 43, 226, 0.1) 70%, transparent 100%);
+  z-index: -1;
+  filter: blur(10px);
+  opacity: 0.7;
+  animation: pulse 3s infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+}
